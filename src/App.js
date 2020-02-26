@@ -1,12 +1,16 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {LoginForm} from "./LoginForm";
 
 function App() {
     return (
-        <div className="App">
-            <LoginForm/>
-        </div>
+        <React.Fragment>
+            <header>Header</header>
+            <main className="main">
+                <LoginForm/>
+            </main>
+            <footer>Header</footer>
+        </React.Fragment>
     );
 }
 
