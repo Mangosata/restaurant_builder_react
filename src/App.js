@@ -1,18 +1,11 @@
 import React from 'react';
 import './App.scss';
 import {LoginForm} from "./LoginForm";
-import Header from "./Header";
-import Footer from "./Footer";
+import OnePage from "./OnePage";
 
 function App() {
     return (
-        <React.Fragment>
-            <Header/>
-            <main className="main">
-                <LoginForm/>
-            </main>
-            <Footer/>
-        </React.Fragment>
+        <OnePage content={<LoginForm/>}/>
     );
 }
 
