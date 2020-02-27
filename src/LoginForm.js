@@ -112,15 +112,17 @@ export class LoginForm extends React.Component {
                         <label className="col-3" htmlFor="exampleInputEmail1">
                             Email
                         </label>
-                        <input
-                            type="text"
-                            name="username"
-                            onChange={this.handleInputChange}
-                            value={this.state.username}
-                            className="form-control col-9"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                        />
+                        <div className="form-input col-9">
+                            <input
+                                type="text"
+                                name="username"
+                                onChange={this.handleInputChange}
+                                value={this.state.username}
+                                className="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                            />
+                        </div>
                         <div className="col-9 ml-auto">
                             <small id="emailHelp" className="form-text text-muted">
                                 We'll never share your email with anyone else.
@@ -131,18 +133,22 @@ export class LoginForm extends React.Component {
                         <label className="col-3" htmlFor="exampleInputPassword1">
                             Password
                         </label>
-                        <input
-                            type="password"
-                            name="password"
-                            onChange={this.handleInputChange}
-                            value={this.state.password}
-                            className="form-control col-9"
-                            id="exampleInputPassword1"
-                        />
+                        <div className="form-input col-9">
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={this.handleInputChange}
+                                value={this.state.password}
+                                className="form-control"
+                                id="exampleInputPassword1"
+                            />
+                        </div>
                     </div>
-                    <button type="submit" className="btn btn-info">
-                        Submit
-                    </button>
+                    <div className="text-center mt-5">
+                        <button type="submit" className="btn btn-info">
+                            Sign in
+                        </button>
+                    </div>
                 </form>
             </div>
         );

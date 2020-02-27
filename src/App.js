@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.scss';
 import {LoginForm} from "./LoginForm";
+import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
     return (
         <React.Fragment>
-            <header>Header</header>
+            <Header/>
             <main className="main">
                 <LoginForm/>
             </main>
-            <footer>Header</footer>
+            <Footer/>
         </React.Fragment>
     );
 }
