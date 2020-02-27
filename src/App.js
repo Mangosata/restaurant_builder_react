@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.scss';
 import {LoginForm} from "./LoginForm";
-import OnePage from "./OnePage";
+import AuthPage from "./AuthPage";
+export const REQUEST_ENDPOINT = 'http://localhost:8080/api/';
 
 function App() {
     return (
-        <OnePage content={<LoginForm/>}/>
+        <AuthPage content={<LoginForm/>}/>
     );
 }
 

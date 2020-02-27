@@ -1,6 +1,5 @@
 import * as React from "react";
-
-const REQUEST_URL = 'http://localhost:8080/api/login';
+import {REQUEST_ENDPOINT} from "./App";
 
 export class LoginForm extends React.Component {
     ajaxLock = false;
@@ -17,30 +16,6 @@ export class LoginForm extends React.Component {
         };
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (this.ajaxLock) {
-            return;
-        }
-
-        this.ajaxLock = true;
-        fetch(REQUEST_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.state)
-        }).then((response) => {
-            this.ajaxLock = false;
-            response.json().then(data => {
-                this.setState({submitted: true});
-                console.log(data);
-            });
-        });
-    };
-
     onKeyPress = event => {
         if (event.which === 13 /* Enter */) {
             event.preventDefault();
@@ -55,7 +30,7 @@ export class LoginForm extends React.Component {
 
         this.ajaxLock = true;
 
-        fetch(REQUEST_URL, {
+        fetch(REQUEST_ENDPOINT + 'login', {
             method: "POST", // or 'PUT'
             headers: {
                 "Content-Type": "application/json"
