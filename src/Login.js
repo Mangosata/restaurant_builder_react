@@ -2,7 +2,7 @@ import * as React from "react";
 import {REQUEST_ENDPOINT} from "./App";
 import {TOKEN_KEY} from "./AuthPage";
 
-export class LoginForm extends React.Component {
+export class Login extends React.Component {
     ajaxLock = false;
 
     // timer = null;

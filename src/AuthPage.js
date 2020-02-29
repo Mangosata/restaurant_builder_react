@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {REQUEST_ENDPOINT} from "./App";
 import Loader from "./Loader";
+import {Redirect} from "react-router-dom";
 
 export const TOKEN_KEY = 'tb23-token';
 
@@ -55,7 +56,7 @@ class AuthPage extends Component {
                 <Header {...this.props}/>
                 <main className="main">
                     {
-                        !this.state.loading && (this.props.content)
+                        !this.state.loading && this.state.user ? (this.props.content) : (<Redirect to={'/'}/>)
                     }
                 </main>
                 <Footer {...this.props}/>
