@@ -1,7 +1,7 @@
 import * as React from "react";
 import {REQUEST_ENDPOINT} from "./App";
 
-export class LoginForm extends React.Component {
+export class Login extends React.Component {
     ajaxLock = false;
 
     // timer = null;
