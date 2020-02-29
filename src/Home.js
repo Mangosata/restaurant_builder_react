@@ -6,11 +6,11 @@ class Home extends Component {
     render() {
         return (
             <>
-                <Header/>
+                <Header {...this.props}/>
                 <main>
                     Home
                 </main>
-                <Footer/>
+                <Footer {...this.props}/>
             </>
         );
     }

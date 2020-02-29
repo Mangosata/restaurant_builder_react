@@ -1,6 +1,18 @@
 import React, {Component} from 'react';
+import {NavLink, withRouter} from "react-router-dom";
+import {TOKEN_KEY} from "./AuthPage";
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    logout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem(TOKEN_KEY);
+        this.props.history.push('/');
+    };
+
     render() {
         return (
             <header className="header switched-header">
@@ -19,10 +31,10 @@ class Header extends Component {
                             <div
                                 className="nav-menu collapse navbar-collapse navbar-collapse justify-content-end py-0 ">
                                 <ul className=" navbar-nav  header-navbar-nav ">
-                                    <li><a href={'/'} className={"nav-link"}>Home</a></li>
-                                    <li><a href={'/profile'} className={"nav-link"}>Profile</a></li>
-                                    <li><a href={'/login'} className={"nav-link"}>Login</a></li>
-                                    <li><a href={'/logout'} className={"nav-link"}>Logout</a></li>
+                                    <li><NavLink to={'/'} className={"nav-link"}>Home</NavLink></li>
+                                    <li><NavLink to={'/profile'} className={"nav-link"}>Profile</NavLink></li>
+                                    <li><NavLink to={'/login'} className={"nav-link"}>Login</NavLink></li>
+                                    <li><a onClick={this.logout} className={"nav-link"}>Logout</a></li>
                                     <li className="ml-lg-auto">
                                         <a className=" nav-link nav-divider" href="index.html#reservation">
                                             <img src="assets/svg/ring-bell-light.svg" alt=""
@@ -47,4 +59,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);

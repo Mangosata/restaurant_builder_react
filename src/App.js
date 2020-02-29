@@ -5,6 +5,9 @@ import AuthPage from "./AuthPage";
 import Home from "./Home";
 import ResetPassword from "./ResetPassword";
 import Register from "./Register";
+import ForgotPassword from "./ForgotPassword";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export const REQUEST_ENDPOINT = 'http://localhost:8080/api/'
 
@@ -23,6 +26,17 @@ function App() {
                 </Route>
                 <Route path={'/register'} exact>
                     <AuthPage content={<Register/>}/>
+                </Route>
+                <Route path={'/forgot'} exact>
+                    <AuthPage content={<ForgotPassword/>}/>
+                </Route>
+                <Route path={'/profile'} exact render={() => {
+                    return <>
+                        <Header/>
+                        'profile'
+                        <Footer/>
+                    </>
+                }}>
                 </Route>
             </Switch>
         </Router>
