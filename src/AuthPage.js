@@ -15,38 +15,37 @@ class AuthPage extends Component {
             loading: true,
             user: null
         };
-
         this.token = localStorage.getItem(TOKEN_KEY) || '';
     }
 
     componentDidMount() {
         if (!!this.token) {
             this.checkTokenValid();
+        } else {
+            this.setState({loading: false});
         }
     }
 
     checkTokenValid() {
-        setTimeout(() => {
+        fetch(REQUEST_ENDPOINT + 'me', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.token}`
+            }
+        }).then((response) => {
             this.setState({loading: false});
-        }, 2000);
-        // fetch(REQUEST_ENDPOINT + 'me', {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authentication": `Bearer ${this.token}`
-        //     }
-        // }).then((response) => {
-        //     this.setState({loading: false});
-        //     response.json().then(data => {
-        //         if (data.success) {
-        //             this.setState({user: data.result});
-        //             window.href = '/';
-        //         } else {
-        //             this.token = '';
-        //             localStorage.removeItem(TOKEN_KEY);
-        //         }
-        //     });
-        // });
+            response.json().then(data => {
+                if (data.success) {
+                    this.setState({user: data.result});
+                } else {
+                    this.token = '';
+                    localStorage.removeItem(TOKEN_KEY);
+                }
+            });
+        }).catch(e => {
+            this.setState({loading: false});
+        });
     }
 
     render() {

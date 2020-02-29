@@ -45,7 +45,6 @@ export class LoginForm extends React.Component {
             })
             .then(data => {
                 if (data.result) {
-                    console.log("Success:", data);
                     // set token ->
                     this.setState({logged: true});
                     // redirect -> profile or home page
