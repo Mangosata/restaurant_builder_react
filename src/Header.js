@@ -14,6 +14,7 @@ class Header extends Component {
     };
 
     render() {
+        let hasToken = !!localStorage.getItem(TOKEN_KEY);
         return (
             <header className="header switched-header">
                 <div className="header-section">
@@ -32,9 +33,14 @@ class Header extends Component {
                                 className="nav-menu collapse navbar-collapse navbar-collapse justify-content-end py-0 ">
                                 <ul className=" navbar-nav  header-navbar-nav ">
                                     <li><NavLink to={'/'} className={"nav-link"}>Home</NavLink></li>
-                                    <li><NavLink to={'/profile'} className={"nav-link"}>Profile</NavLink></li>
-                                    <li><NavLink to={'/login'} className={"nav-link"}>Login</NavLink></li>
-                                    <li><a onClick={this.logout} className={"nav-link"}>Logout</a></li>
+                                    {hasToken ? (
+                                        <>
+                                            <li><NavLink to={'/profile'} className={"nav-link"}>Profile</NavLink></li>
+                                            <li><a onClick={this.logout} className={"nav-link"}>Logout</a></li>
+                                        </>
+                                    ) : (
+                                        <li><NavLink to={'/login'} className={"nav-link"}>Login</NavLink></li>
+                                    )}
                                     <li className="ml-lg-auto">
                                         <a className=" nav-link nav-divider" href="index.html#reservation">
                                             <img src="assets/svg/ring-bell-light.svg" alt=""

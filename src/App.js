@@ -1,5 +1,4 @@
 import React from 'react';
-import {Login} from "./Login";
 import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 import AuthPage from "./AuthPage";
 import Home from "./Home";
@@ -8,6 +7,8 @@ import Register from "./Register";
 import ForgotPassword from "./ForgotPassword";
 import Header from "./Header";
 import Footer from "./Footer";
+import Login from "./Login";
+import Profile from "./Profile";
 
 export const REQUEST_ENDPOINT = 'http://localhost:8080/api/'
 
@@ -30,13 +31,8 @@ function App() {
                 <Route path={'/forgot'} exact>
                     <AuthPage content={<ForgotPassword/>}/>
                 </Route>
-                <Route path={'/profile'} exact render={() => {
-                    return <>
-                        <Header/>
-                        'profile'
-                        <Footer/>
-                    </>
-                }}>
+                <Route path={'/profile'} exact>
+                    <Profile/>
                 </Route>
             </Switch>
         </Router>

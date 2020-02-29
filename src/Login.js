@@ -1,11 +1,10 @@
-import * as React from "react";
+import React, {Component} from 'react';
 import {REQUEST_ENDPOINT} from "./App";
 import {TOKEN_KEY} from "./AuthPage";
+import {withRouter} from "react-router-dom";
 
-export class Login extends React.Component {
+class Login extends Component {
     ajaxLock = false;
-
-    // timer = null;
 
     constructor(props) {
         super(props);
@@ -49,6 +48,9 @@ export class Login extends React.Component {
                     this.setState({logged: true});
                     // redirect -> profile or home page
                     localStorage.setItem(TOKEN_KEY, `Bearer ${data.result}`);
+                    setTimeout(() => {
+                        this.props.history.push('/');
+                    }, 1000);
                 } else {
                     this.setState({message: data.message});
                 }
@@ -61,21 +63,6 @@ export class Login extends React.Component {
     handleInputChange = event => {
         let {target} = event;
         this.setState({[target.name]: target.value});
-
-        if (target.name !== "username") {
-            return;
-        }
-
-        // if (this.timer) {
-        // this.setState({typing: 1});
-        // clearTimeout(this.timer);
-        // }
-        // this.timer = setTimeout(() => {
-        // this.setState({typing: -1});
-        // setTimeout(() => {
-        //     this.setState({typing: 0});
-        // }, 2000);
-        // }, 800);
     };
 
     render() {
@@ -141,4 +128,6 @@ export class Login extends React.Component {
             </div>
         );
     }
-}
+};
+
+export default withRouter(Login);
