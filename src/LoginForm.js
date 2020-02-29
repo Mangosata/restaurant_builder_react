@@ -1,5 +1,6 @@
 import * as React from "react";
 import {REQUEST_ENDPOINT} from "./App";
+import {TOKEN_KEY} from "./AuthPage";
 
 export class LoginForm extends React.Component {
     ajaxLock = false;
@@ -11,8 +12,9 @@ export class LoginForm extends React.Component {
         this.state = {
             username: "",
             password: "",
-            logged: false
+            logged: false,
             // typing: 0,
+            message: ""
         };
     }
 
@@ -42,10 +44,15 @@ export class LoginForm extends React.Component {
                 return response.json();
             })
             .then(data => {
-                console.log("Success:", data);
-                // set token ->
-                this.setState({logged: true});
-                // redirect -> profile or home page
+                if (data.result) {
+                    console.log("Success:", data);
+                    // set token ->
+                    this.setState({logged: true});
+                    // redirect -> profile or home page
+                    localStorage.setItem(TOKEN_KEY, `Bearer ${data.result}`);
+                } else {
+                    this.setState({message: data.message});
+                }
             })
             .catch(error => {
                 console.error("Error:", error);
@@ -74,7 +81,7 @@ export class LoginForm extends React.Component {
 
     render() {
         if (this.state.logged) {
-            return <p>You already logged.</p>;
+            return <p>You already logged, redirecting...</p>;
         }
         return (
             <div className="login-form-container">
@@ -119,6 +126,13 @@ export class LoginForm extends React.Component {
                             />
                         </div>
                     </div>
+                    {!!this.state.message && (
+                        <div className="message">
+                            <div className="alert alert-danger" role="alert">
+                                {this.state.message}
+                            </div>
+                        </div>
+                    )}
                     <div className="text-center mt-5">
                         <button type="submit" className="btn btn-info">
                             Sign in

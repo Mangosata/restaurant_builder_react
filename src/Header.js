@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
+        console.log(this.props.version);
         return (
             <header className="header switched-header">
                 <div className="header-section">

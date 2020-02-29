@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import {REQUEST_ENDPOINT} from "./App";
 import Loader from "./Loader";
 
-const TOKEN_KEY = 'tb23-token';
+export const TOKEN_KEY = 'tb23-token';
 
 class AuthPage extends Component {
     token = null;
